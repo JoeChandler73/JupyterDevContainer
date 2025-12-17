@@ -1,18 +1,72 @@
 {
   "name": "Jupyter Notebook Dev Container",
-  // Reference the Dockerfile in the current directory for the build configuration
   "build": {
-    "dockerfile": "Dockerfile",
-    "context": ".." // Set the build context to the parent directory (project root)
-  },
-
-  // Optional: Install VS Code extensions automatically
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "ms-python.python",
-        "ms-toolsai.jupyter"
-      ]
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "features": {
+      "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": "false",
+      "installOhMyZsh": "false",
+      "installSsl": "false",
+      "username": "vscode",
+      "userUid": "1000",
+      "userGid": "1000",
+      "upgradePackages": "true"
+    },
+    "ghcr.io/devcontainers/features/python:1": "none",
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest",
+      "ppa": "false"
+    },
+    "ghcr.io/joechandler73/devcontainer-features/common-dev-tools:latest": {},
+      "ghcr.io/joechandler73/devcontainer-features/starship-nerd-font:latest": {
+      "nerdFont": "IBMPlexMono",
+      "starshipPreset": "no-runtime-versions",
+      "fontVersion": "v3.4.0"
     }
-  }
+  },
+	"customizations": {
+	  "vscode": {
+		  "settings": {
+			  "python.defaultInterpreterPath": "/usr/local/bin/python"
+      },
+      "extensions": [
+        "ms-python.autopep8",
+        "dbaeumer.vscode-eslint",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.vscode-jupyter-cell-tags",
+        "ms-toolsai.jupyter-renderers",
+        "ms-toolsai.vscode-jupyter-slideshow",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "ms-python.debugpy",
+        "Catppuccin.catppuccin-vsc",
+        "ms-toolsai.jupyter-keymap",
+        "PKief.material-icon-theme"
+      ]
+		}
+	},
+  "mounts": [
+    // Git config
+    {
+      "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig",
+      "target": "/home/vscode/.gitconfig",
+      "type": "bind"
+    },
+    // SSH keys
+    {
+      "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.ssh",
+      "target": "/home/vscode/.ssh",
+      "type": "bind"
+    },
+    // Docker config (for registry auth)
+    {
+      "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.docker",
+      "target": "/home/vscode/.docker-host",
+      "type": "bind"
+    }
+  ],
+  "remoteUser": "vscode",
+  "waitFor": "postCreateCommand"
 }
