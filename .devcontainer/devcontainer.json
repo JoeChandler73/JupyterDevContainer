@@ -6,25 +6,22 @@
     },
     "features": {
       "ghcr.io/devcontainers/features/common-utils:2": {
-      "installZsh": "false",
-      "installOhMyZsh": "false",
-      "installSsl": "false",
-      "username": "vscode",
-      "userUid": "1000",
-      "userGid": "1000",
-      "upgradePackages": "true"
-    },
-    "ghcr.io/devcontainers/features/python:1": "none",
-    "ghcr.io/devcontainers/features/git:1": {
-      "version": "latest",
-      "ppa": "false"
-    },
-    "ghcr.io/joechandler73/devcontainer-features/common-dev-tools:latest": {},
-      "ghcr.io/joechandler73/devcontainer-features/starship-nerd-font:latest": {
-      "nerdFont": "IBMPlexMono",
-      "starshipPreset": "no-runtime-versions",
-      "fontVersion": "v3.4.0"
-    }
+        "installZsh": true,
+        "configureZshAsDefaultShell": true,
+        "installOhMyZshConfig": true,
+        "upgradePackages": true
+      },
+      "ghcr.io/devcontainers/features/python:1": "none",
+      "ghcr.io/joechandler73/devcontainer-features/nerd-font:latest": {
+        "nerdFont": "JetBrainsMono",
+        "fontVersion": "v3.4.0"
+      },
+      "ghcr.io/joechandler73/devcontainer-features/starship-prompt:latest": {
+        "starshipPreset": "no-runtime-versions"
+      },
+      "ghcr.io/joechandler73/devcontainer-features/zsh-syntax-highlighting:latest": {
+        "flavour": "frappe"
+      }
   },
 	"customizations": {
 	  "vscode": {
@@ -58,12 +55,6 @@
     {
       "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.ssh",
       "target": "/home/vscode/.ssh",
-      "type": "bind"
-    },
-    // Docker config (for registry auth)
-    {
-      "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.docker",
-      "target": "/home/vscode/.docker-host",
       "type": "bind"
     }
   ],

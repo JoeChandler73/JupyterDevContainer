@@ -1,5 +1,5 @@
 # Base image
-FROM mcr.microsoft.com/devcontainers/python:3-bookworm
+FROM mcr.microsoft.com/devcontainers/python:dev-3.11-bookworm
 
 # Set the working directory
 WORKDIR /usr/src/app
